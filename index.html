@@ -1,257 +1,210 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Floreada</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #333;
-        }
-        .contenedor {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            color: #ff69b4;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .calculadora {
-            background-color: rgba(255, 240, 245, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255,105,180,0.3);
-            padding: 20px;
-            width: 300px;
-            margin-bottom: 20px;
-        }
-        .pantalla {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-            text-align: right;
-            font-size: 24px;
-            min-height: 40px;
-            border: 2px solid #ffb6c1;
-        }
-        .botones {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        button {
-            background-color: #ffc0cb;
-            border: none;
-            border-radius: 5px;
-            color: #333;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 15px;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-        button:hover {
-            background-color: #ffb6c1;
-            transform: scale(1.05);
-        }
-        button:active {
-            transform: scale(0.95);
-        }
-        .operador {
-            background-color: #ff69b4;
-            color: #fff;
-        }
-        .operador:hover {
-            background-color: #ff1493;
-        }
-        .igual {
-            background-color: #ff1493;
-            color: #fff;
-        }
-        .igual:hover {
-            background-color: #ff69b4;
-        }
-        .limpiar {
-            background-color: #ff6b6b;
-            color: #fff;
-        }
-        .limpiar:hover {
-            background-color: #ff4757;
-        }
-        .historial {
-            background-color: rgba(255, 240, 245, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255,105,180,0.3);
-            padding: 20px;
-            width: 300px;
-        }
-        .historial h2 {
-            color: #ff69b4;
-            margin-top: 0;
-        }
-        .historial ul {
-            list-style-type: none;
-            padding: 0;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .historial li {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            margin-bottom: 5px;
-            padding: 5px 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="contenedor">
-        <h1>Bienvenido, te ayudamos con tus cálculos</h1>
-        <div class="calculadora">
-            <div class="pantalla" id="pantalla">0</div>
-            <div class="botones">
-                <button class="limpiar" onclick="limpiar()">C</button>
-                <button onclick="borrarUltimo()">←</button>
-                <button onclick="agregarOperador('%')">%</button>
-                <button class="operador" onclick="agregarOperador('/')">÷</button>
-                <button onclick="agregarNumero('7')">7</button>
-                <button onclick="agregarNumero('8')">8</button>
-                <button onclick="agregarNumero('9')">9</button>
-                <button class="operador" onclick="agregarOperador('*')">×</button>
-                <button onclick="agregarNumero('4')">4</button>
-                <button onclick="agregarNumero('5')">5</button>
-                <button onclick="agregarNumero('6')">6</button>
-                <button class="operador" onclick="agregarOperador('-')">-</button>
-                <button onclick="agregarNumero('1')">1</button>
-                <button onclick="agregarNumero('2')">2</button>
-                <button onclick="agregarNumero('3')">3</button>
-                <button class="operador" onclick="agregarOperador('+')">+</button>
-                <button onclick="cambiarSigno()">+/-</button>
-                <button onclick="agregarNumero('0')">0</button>
-                <button onclick="agregarDecimal()">.</button>
-                <button class="igual" onclick="calcular()">=</button>
+import React from 'react';
+import { Phone, MessageSquare, MapPin, Clock, Menu } from 'lucide-react';
+
+function App() {
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/1234567890', '_blank');
+  };
+
+  return (
+    <div className="min-h-screen bg-amber-50 flex flex-col">
+      {/* Header */}
+      <header className="bg-red-700 text-white shadow-lg">
+        <div className="container mx-auto px-4 py-6 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <Menu className="h-8 w-8" />
+            <h1 className="text-3xl md:text-4xl font-bold">Burger Express</h1>
+          </div>
+          <nav className="hidden md:flex space-x-6">
+            <a href="#menu" className="hover:text-yellow-300 transition-colors">Menú</a>
+            <a href="#about" className="hover:text-yellow-300 transition-colors">Nosotros</a>
+            <a href="#contact" className="hover:text-yellow-300 transition-colors">Contacto</a>
+          </nav>
+          <button 
+            onClick={handleWhatsAppClick}
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full flex items-center"
+          >
+            <MessageSquare className="mr-2 h-5 w-5" />
+            <span>WhatsApp</span>
+          </button>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative h-96">
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" 
+          alt="Delicious burger" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Las Mejores Hamburguesas de la Ciudad</h2>
+          <p className="text-xl mb-8">Sabor inigualable, ingredientes frescos y 100% caseras</p>
+          <button 
+            onClick={handleWhatsAppClick}
+            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full flex items-center text-lg"
+          >
+            <MessageSquare className="mr-2 h-5 w-5" />
+            <span>Ordena por WhatsApp</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Menu Section */}
+      <section id="menu" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Nuestro Menú</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Burger 1 */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+              <img 
+                src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                alt="Classic Burger" 
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Hamburguesa Clásica</h3>
+                <p className="text-gray-600 mb-4">Carne 100% de res, lechuga, tomate, cebolla, queso y nuestra salsa especial.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-red-700">$8.99</span>
+                  <button 
+                    onClick={handleWhatsAppClick}
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full flex items-center"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <span>Ordenar</span>
+                  </button>
+                </div>
+              </div>
             </div>
+
+            {/* Burger 2 */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+              <img 
+                src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                alt="Double Cheese Burger" 
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Doble con Queso</h3>
+                <p className="text-gray-600 mb-4">Doble carne, doble queso, tocino crujiente, cebolla caramelizada y salsa BBQ.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-red-700">$12.99</span>
+                  <button 
+                    onClick={handleWhatsAppClick}
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full flex items-center"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <span>Ordenar</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Burger 3 */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+              <img 
+                src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                alt="Veggie Burger" 
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Hamburguesa Vegana</h3>
+                <p className="text-gray-600 mb-4">Deliciosa hamburguesa de garbanzos y vegetales, aguacate, rúcula y salsa de yogurt.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-red-700">$10.99</span>
+                  <button 
+                    onClick={handleWhatsAppClick}
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full flex items-center"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <span>Ordenar</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="historial">
-            <h2>Historial de operaciones</h2>
-            <ul id="listaHistorial"></ul>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-16 bg-amber-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-8 md:mb-0">
+              <img 
+                src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                alt="Our restaurant" 
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="md:w-1/2 md:pl-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Sobre Burger Express</h2>
+              <p className="text-lg mb-4">
+                Desde 2010, en Burger Express nos dedicamos a crear las hamburguesas más deliciosas con ingredientes frescos y de la más alta calidad.
+              </p>
+              <p className="text-lg mb-6">
+                Nuestro secreto está en la preparación artesanal, el amor por la buena comida y el compromiso de ofrecer siempre el mejor servicio a nuestros clientes.
+              </p>
+              <div className="flex flex-col space-y-4">
+                <div className="flex items-center">
+                  <Clock className="h-6 w-6 text-red-700 mr-3" />
+                  <span>Abierto todos los días: 11:00 AM - 10:00 PM</span>
+                </div>
+                <div className="flex items-center">
+                  <MapPin className="h-6 w-6 text-red-700 mr-3" />
+                  <span>Av. Principal #123, Ciudad</span>
+                </div>
+                <div className="flex items-center">
+                  <Phone className="h-6 w-6 text-red-700 mr-3" />
+                  <span>+1 234 567 890</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 bg-red-700 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">¡Ordena Ahora!</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Haz tu pedido fácilmente a través de WhatsApp. Entrega a domicilio o recoge en nuestra tienda.
+          </p>
+          <button 
+            onClick={handleWhatsAppClick}
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full flex items-center text-xl mx-auto"
+          >
+            <MessageSquare className="mr-3 h-6 w-6" />
+            <span>Escríbenos al WhatsApp</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <h2 className="text-2xl font-bold">Burger Express</h2>
+              <p>Las mejores hamburguesas de la ciudad</p>
+            </div>
+            <div className="flex space-x-4">
+              <a href="#" className="hover:text-red-500 transition-colors">Facebook</a>
+              <a href="#" className="hover:text-red-500 transition-colors">Instagram</a>
+              <a href="#" className="hover:text-red-500 transition-colors">Twitter</a>
+            </div>
+          </div>
+          <div className="mt-8 text-center text-gray-400">
+            <p>&copy; 2025 Burger Express. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
     </div>
-    <script>
-        let pantalla = document.getElementById('pantalla');
-        let operacionActual = '';
-        let historial = JSON.parse(localStorage.getItem('historialCalculadora')) || [];
+  );
+}
 
-        function actualizarPantalla() {
-            pantalla.textContent = operacionActual || '0';
-        }
-
-        function agregarNumero(numero) {
-            if (operacionActual === '0') {
-                operacionActual = numero;
-            } else {
-                operacionActual += numero;
-            }
-            actualizarPantalla();
-        }
-
-        function agregarOperador(operador) {
-            if (operacionActual && !isNaN(operacionActual[operacionActual.length - 1])) {
-                operacionActual += operador;
-                actualizarPantalla();
-            }
-        }
-
-        function agregarDecimal() {
-            if (!operacionActual.includes('.')) {
-                operacionActual += '.';
-                actualizarPantalla();
-            }
-        }
-
-        function limpiar() {
-            operacionActual = '0';
-            actualizarPantalla();
-        }
-
-        function borrarUltimo() {
-            operacionActual = operacionActual.slice(0, -1);
-            if (operacionActual === '') {
-                operacionActual = '0';
-            }
-            actualizarPantalla();
-        }
-
-        function cambiarSigno() {
-            if (operacionActual !== '0') {
-                if (operacionActual[0] === '-') {
-                    operacionActual = operacionActual.slice(1);
-                } else {
-                    operacionActual = '-' + operacionActual;
-                }
-                actualizarPantalla();
-            }
-        }
-
-        function calcular() {
-            try {
-                let resultado;
-                if (operacionActual.includes('%')) {
-                    resultado = evaluarPorcentaje(operacionActual);
-                } else {
-                    resultado = eval(operacionActual);
-                }
-                let operacionCompleta = `${operacionActual} = ${resultado}`;
-                historial.unshift(operacionCompleta);
-                if (historial.length > 10) {
-                    historial.pop();
-                }
-                localStorage.setItem('historialCalculadora', JSON.stringify(historial));
-                operacionActual = resultado.toString();
-                actualizarPantalla();
-                actualizarHistorial();
-            } catch (error) {
-                operacionActual = 'Error';
-                actualizarPantalla();
-            }
-        }
-
-        function evaluarPorcentaje(expresion) {
-            let partes = expresion.split('%');
-            if (partes.length === 2) {
-                let numero = parseFloat(partes[0]);
-                let porcentaje = parseFloat(partes[1]);
-                return (numero * porcentaje) / 100;
-            }
-            return eval(expresion);
-        }
-
-        function actualizarHistorial() {
-            let listaHistorial = document.getElementById('listaHistorial');
-            listaHistorial.innerHTML = '';
-            historial.forEach(operacion => {
-                let li = document.createElement('li');
-                li.textContent = operacion;
-                listaHistorial.appendChild(li);
-            });
-        }
-
-        // Cargar historial al iniciar
-        actualizarHistorial();
-    </script>
-</body>
-</html>
-
+export default App;
